@@ -5,7 +5,7 @@
  */
 const project = {
   paperTitle: "Hear the World in Stereo: Learning Dynamic Spatial Correspondence for Immersive Joint Video-Audio Generation",
-  abstract: "Joint video-audio (VA) generation has made rapid progress in semantic correspondence and temporal synchronization, yet spatial correspondence remains largely overlooked. In particular, stereo audio does not ensure that the perceived sound location dynamically follows the motion of its visible source over time. We define this property as Dynamic Spatial Correspondence and propose StereoBind, a motion-conditioned framework that explicitly binds visual source motion to stereo sound generation. StereoBind utilizes motion tracks as a shared cross-modal condition and jointly models entity-level audiovisual correspondence, absolute spatial states, and relative spatial relations. Specifically, Visual Motion Binding (VMB) Tokens establish entity-level audiovisual correspondence, while a Spatial Track Encoder (STE) encodes the absolute trajectory of the sound source, and Residual Track RoPE (RT-RoPE) captures the relative spatial relations induced by its trajectory. To provide supervision for such correspondence, we further construct StereoWorld-29K, a large-scale stereo audio-video dataset with corresponding motion tracks, and introduce StereoWorldBench (SW-Bench) to evaluate the spatial consistency of generated stereo audio. Experiments on SW-Bench demonstrate that StereoBind achieves motion-aligned stereo generation, enabling stereoscopic audio generation beyond the capabilities of existing joint VA models and advancing immersive generation.",
+  abstract: "Recent joint video-audio generation models have achieved strong semantic correspondence and temporal synchronization. However, applications such as AR/VR and interactive gaming further require stereo audio to provide an immersive sense, which remains largely overlooked. Effective stereo audio requires the perceived sound location to evolve consistently with the motion of its corresponding visual source. We refer to this property as Dynamic Spatial Correspondence and propose StereoBind, a framework that binds visual source motion to stereo sound generation. StereoBind uses motion tracks to coordinate visual motion and stereo audio through three complementary mechanisms. Visual Motion Binding establishes source-aware audiovisual correspondence, the Spatial Track Encoder captures absolute source positions, and Residual Track RoPE models relative motion. For supervision and evaluation, we construct StereoWorld-29K, a large-scale stereo audio-video dataset with paired motion tracks, and StereoWorldBench for measuring audiovisual spatial consistency. Experiments show that StereoBind substantially improves spatial alignment in stereo audio generation over existing models while preserving overall audiovisual quality.",
   bibtex: "",
   paperUrl: "",
   codeUrl: "https://github.com/vivoCameraResearch/StereoBind",
@@ -66,7 +66,20 @@ if (project.paperTitle.trim()) {
   document.title = project.paperTitle;
 }
 if (project.abstract.trim()) {
-  document.getElementById("abstract-text").textContent = project.abstract;
+  const abstract = document.getElementById("abstract-text");
+  const emphasizedText = "Dynamic Spatial Correspondence";
+  const emphasisStart = project.abstract.indexOf(emphasizedText);
+  if (emphasisStart > -1) {
+    const emphasis = document.createElement("em");
+    emphasis.textContent = emphasizedText;
+    abstract.replaceChildren(
+      document.createTextNode(project.abstract.slice(0, emphasisStart)),
+      emphasis,
+      document.createTextNode(project.abstract.slice(emphasisStart + emphasizedText.length)),
+    );
+  } else {
+    abstract.textContent = project.abstract;
+  }
 }
 if (project.bibtex.trim()) {
   document.getElementById("bibtex-text").textContent = project.bibtex;
