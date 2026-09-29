@@ -1,5 +1,5 @@
 /*
- * Edit this file to fill the page. Put media files in dist/media/ and use
+ * Edit this file to fill the page. Put media files in media/ and use
  * relative paths such as "./media/featured-demo.mp4" below.
  * Empty strings intentionally keep the labeled placeholders visible.
  */
