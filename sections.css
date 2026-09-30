@@ -99,6 +99,7 @@
 .resource-link:hover { background:rgba(111,229,227,.1); }
 .citation-heading { border-top:1px solid var(--line); padding-top:27px; margin-top:33px!important; }
 .paper-panel pre { white-space:pre-wrap; overflow-wrap:anywhere; color:#9eafbb; font:13px/1.6 Consolas,'Courier New',monospace; background:#0b1522; border:1px solid var(--line); padding:16px; margin:0; }
+.paper-panel pre[hidden] { display:none; }
 .site-footer { border-top:1px solid var(--line); background:#070d17; }
 .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; padding-block:28px; }
 .footer-inner>span,.footer-inner>a:last-child { font:600 10px Arial,sans-serif; letter-spacing:.16em; color:#8ba0af; }

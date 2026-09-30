@@ -82,7 +82,9 @@ if (project.abstract.trim()) {
   }
 }
 if (project.bibtex.trim()) {
-  document.getElementById("bibtex-text").textContent = project.bibtex;
+  const bibtex = document.getElementById("bibtex-text");
+  bibtex.textContent = project.bibtex;
+  bibtex.hidden = false;
 }
 
 function activateLink(id, url, label, className) {
