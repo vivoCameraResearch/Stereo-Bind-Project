@@ -5,11 +5,10 @@
 .concept-band { background:#0d1928; border-top:1px solid var(--line); border-bottom:1px solid var(--line); position:relative; }
 .concept-band::before { content:""; position:absolute; inset:0; background:radial-gradient(circle at 50% 50%,rgba(71,139,151,.10),transparent 48%); pointer-events:none; }
 .concept-inner { position:relative; padding-block:25px 90px; }
-.concept-head { text-align:center; max-width:1100px; margin:78px auto 54px; }
+.concept-head { text-align:center; max-width:900px; margin:78px auto 54px; }
 .overline { font:600 11px Arial,sans-serif; color:var(--cyan); letter-spacing:.17em; margin:0 0 19px; }
 .concept-head h2,.two-column-heading h2,.final-grid h2 { font-size:clamp(40px,5vw,70px); font-weight:600; letter-spacing:-.06em; line-height:1.08; margin:0; }
 .concept-head h2 span,.two-column-heading h2 span,.final-grid h2 span { color:var(--cyan); }
-.concept-head h2 .concept-title-first { color:var(--text); white-space:nowrap; }
 .concept-head>p:last-child { color:var(--muted); max-width:650px; margin:24px auto 0; line-height:1.8; }
 .worlds-grid { display:grid; grid-template-columns:minmax(0,1fr) 92px minmax(0,1fr); align-items:stretch; }
 .world-card { min-height:330px; border:1px solid var(--line); background:linear-gradient(145deg,rgba(39,87,103,.12),rgba(8,18,31,.45)); padding:30px 32px; position:relative; overflow:hidden; }
@@ -123,7 +122,6 @@
   .concept-inner { padding-bottom:65px; }
   .concept-head { margin:58px auto 38px; }
   .concept-head h2,.two-column-heading h2,.final-grid h2 { font-size:clamp(37px,8vw,54px); }
-  .concept-head h2 .concept-title-first { font-size:clamp(16px,5.8vw,48px); }
   .worlds-grid { display:block; }
   .world-card { min-height:250px; }
   .world-bridge { height:60px; transform:rotate(90deg); }
