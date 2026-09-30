@@ -98,7 +98,7 @@ function activateLink(id, url, label, className) {
   old.replaceWith(link);
 }
 activateLink("paper-link", project.paperUrl, "Paper ↗", "button button-primary");
-activateLink("code-link", project.codeUrl, "Code ↗", "button button-muted");
+activateLink("code-link", project.codeUrl, "Code ↗", "button button-code");
 
 for (const grid of document.querySelectorAll("[data-results]")) {
   const category = grid.dataset.results;

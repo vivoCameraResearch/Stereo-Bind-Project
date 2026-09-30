@@ -157,6 +157,8 @@
 .button-pending { background:rgba(111,229,227,.12); color:#a5c5ca; border-color:rgba(111,229,227,.28); cursor:default; }
 .button-text { border-color:transparent; color:var(--cyan); padding-inline:10px; }
 .button-text:hover { color:#b5f8f1; }
+.button-code { color:var(--cyan); border-color:rgba(111,229,227,.6); background:rgba(111,229,227,.08); cursor:pointer; transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease; }
+.button-code:hover,.button-code:focus-visible { color:#06212b; border-color:var(--cyan); background:var(--cyan); box-shadow:0 0 0 4px rgba(111,229,227,.14),0 12px 24px rgba(0,0,0,.2); }
 .abstract-lead { padding-bottom:95px; scroll-margin-top:25px; }
 .abstract-grid { display:grid; grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr); gap:75px; padding-top:62px; }
 .abstract-grid h2 { font-size:clamp(38px,3.8vw,58px); line-height:1.12; letter-spacing:-.055em; margin:0; }
