@@ -81,6 +81,26 @@ const staticLeftInputs = {
   },
 };
 
+// For these categories, result category-NN uses prompts/NN.txt and motion-tracks/NN.mp4.
+const fileBackedInputCategories = new Set([
+  "static-right",
+  "dynamic-left-to-right",
+  "dynamic-right-to-left",
+  "dynamic-left-right-left",
+  "dynamic-right-left-right",
+]);
+
+function getResultInput(category, number) {
+  const embedded = staticLeftInputs[`${category}-${number}`];
+  if (embedded) return embedded;
+  if (!fileBackedInputCategories.has(category)) return null;
+  const base = `./media/results/${category}`;
+  return {
+    promptUrl: `${base}/prompts/${number}.txt`,
+    motionTrack: `${base}/motion-tracks/${number}.mp4`,
+  };
+}
+
 if (project.paperTitle.trim()) {
   const title = document.getElementById("hero-title");
   const colon = project.paperTitle.indexOf(":");
@@ -171,7 +191,7 @@ for (const grid of document.querySelectorAll("[data-results]")) {
     card.append(frame, caption);
 
     const number = String(index + 1).padStart(2, "0");
-    const input = staticLeftInputs[`${category}-${number}`];
+    const input = getResultInput(category, number);
     if (input) {
       const details = document.createElement("details");
       details.className = "result-input-details";
@@ -186,7 +206,27 @@ for (const grid of document.querySelectorAll("[data-results]")) {
       promptLabel.textContent = "INPUT PROMPT";
       const prompt = document.createElement("p");
       prompt.className = "result-input-prompt";
-      prompt.textContent = input.prompt;
+      prompt.textContent = input.prompt || "Loading prompt…";
+      if (input.promptUrl) {
+        let loading = false;
+        details.addEventListener("toggle", async () => {
+          if (!details.open || prompt.dataset.loaded || loading) return;
+          loading = true;
+          prompt.textContent = "Loading prompt…";
+          try {
+            const response = await fetch(input.promptUrl);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const text = (await response.text()).trim();
+            if (!text) throw new Error("Prompt is empty");
+            prompt.textContent = text;
+            prompt.dataset.loaded = "true";
+          } catch {
+            prompt.textContent = "Prompt unavailable. Close and reopen to retry.";
+          } finally {
+            loading = false;
+          }
+        });
+      }
       const trackLabel = document.createElement("h5");
       trackLabel.textContent = "MOTION TRACK";
       const track = document.createElement("video");
